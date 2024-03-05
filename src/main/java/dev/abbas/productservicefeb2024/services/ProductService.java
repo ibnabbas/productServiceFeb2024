@@ -12,4 +12,11 @@ public interface ProductService {
 
     Product createProduct(String title, String description,
                           String image, double price, String category);
+
+    void deleteById(int id);
+
+    Product updateProduct(Long productId , String title, String desc,
+                          String image, Double price, String category);
+
+    List<String> getAllCategories();
 }

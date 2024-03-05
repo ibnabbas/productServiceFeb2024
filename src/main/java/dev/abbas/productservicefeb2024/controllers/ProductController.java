@@ -50,4 +50,26 @@ public class ProductController {
         ResponseEntity<List<Product>> response = new ResponseEntity<>(products, HttpStatus.NOT_FOUND);
         return response;
     }
+
+    @PutMapping("/products/{id}")
+    public Product updateProduct(@PathVariable("id") Long productId ,
+                                 @RequestBody CreateProductRequestDto request){
+        return productService.updateProduct(productId,
+                request.getTitle(),
+                request.getDescription(),
+                request.getImage(),
+                request.getPrice(),
+                request.getCategory()
+        );
+    }
+    @DeleteMapping("/products/{id}")
+    public void deleteProduct(@PathVariable("id") int id){
+
+        productService.deleteById(id);
+    }
+
+    @GetMapping("/products/categories")
+    public List<String> getAllCategories(){
+        return  productService.getAllCategories();
+    }
 }
